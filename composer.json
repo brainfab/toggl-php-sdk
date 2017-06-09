@@ -1,0 +1,24 @@
+{
+  "name": "brainfab/toggl_sdk",
+  "description": "Toggl API PHP SDK",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Max Kovpak",
+      "email": "max_kovpak@hotmail.com",
+      "homepage": "http://www.max-kovpak.com"
+    }
+  ],
+  "version": "1.0.0-dev",
+  "require": {
+    "php": ">=7.0",
+    "guzzlehttp/guzzle": "^6.2",
+    "nesbot/carbon": "^1.22"
+  },
+  "autoload": {
+    "psr-4": {
+      "Brainfab\\Toggl\\": "src"
+    }
+  }
+}
