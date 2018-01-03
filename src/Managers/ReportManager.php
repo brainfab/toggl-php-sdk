@@ -28,15 +28,18 @@ class ReportManager extends BaseManager
 
     /**
      * @param integer $workspaceId
+     * @param array   $requestParams
      *
      * @return array
      */
-    public function details($workspaceId)
+    public function details($workspaceId, array $requestParams = [])
     {
         $query = [
             'user_agent'   => self::USER_AGENT,
             'workspace_id' => $workspaceId
         ];
+
+        $query = array_merge($query, $requestParams);
 
         $response = $this->client->request('GET', $this->url('details'), [
             RequestOptions::QUERY => $query
