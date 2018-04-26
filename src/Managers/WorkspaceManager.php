@@ -204,19 +204,24 @@ class WorkspaceManager extends BaseManager
 
     /**
      * @param int|Workspace $workspace
+     * @param array         $projectIds
      *
      * @return Project[]|Collection
      */
-    public function projects($workspace)
+    public function projects($workspace, array $projectIds = null)
     {
         $id = $workspace instanceof Workspace ? $workspace->id : $workspace;
+        $params['id'] = $id;
 
-        $response = $this->client->get($this->url('workspaces/{id}/projects', ['id' => $id]));
+        $response = $this->client->get($this->url('workspaces/{id}/projects', $params));
         $data = $this->decodeResponse($response);
 
         $result = new Collection();
         foreach ($data as $itemData) {
-            $result[] = $this->projectAdapter->transform($itemData);
+            $project = $this->projectAdapter->transform($itemData);
+            if (null === $projectIds || in_array($project->id, $projectIds)) {
+                $result[] = $project;
+            }
         }
 
         return $result;

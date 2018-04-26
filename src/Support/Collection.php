@@ -62,6 +62,26 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     }
 
     /**
+     * @return mixed
+     */
+    public function first()
+    {
+        foreach ($this->items as $item) {
+            return $item;
+        }
+
+        return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function last()
+    {
+        return empty($this->items) ? null : end($array);
+    }
+
+    /**
      * @return ArrayIterator
      */
     public function getIterator()
@@ -122,5 +142,15 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     public function count()
     {
         return count($this->items);
+    }
+
+    /**
+     * @param callable $callback
+     *
+     * @return Collection
+     */
+    public function filter(callable $callback)
+    {
+        return new Collection(array_filter($this->items, $callback));
     }
 }
