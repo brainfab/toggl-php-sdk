@@ -35,11 +35,21 @@ class Toggl
      *
      * @param string $apiKey
      */
-    public function __construct($apiKey)
+    public function __construct($apiKey = null)
     {
         $this->container = new Container([
             'api_token' => $apiKey
         ]);
+    }
+
+    /**
+     * Set API key.
+     *
+     * @param string $apiKey
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->container->setParameter('api_token', $apiKey);
     }
 
     /**
