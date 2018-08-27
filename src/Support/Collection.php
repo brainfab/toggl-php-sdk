@@ -53,6 +53,15 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
 
     /**
      * @param string $key
+     * @param mixed  $value
+     */
+    public function set($key, $value)
+    {
+        $this->offsetSet($key, $value);
+    }
+
+    /**
+     * @param string $key
      *
      * @return mixed
      */

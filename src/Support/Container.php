@@ -254,4 +254,17 @@ class Container
 
         return $this->params->get($name);
     }
+
+    /**
+     * @param string $name
+     * @param mixed  $value
+     */
+    public function setParameter($name, $value)
+    {
+        if (!$this->params->has($name)) {
+            throw new \RuntimeException(sprintf('Parameter "%s" not exists', $name));
+        }
+
+        $this->params->set($name, $value);
+    }
 }
